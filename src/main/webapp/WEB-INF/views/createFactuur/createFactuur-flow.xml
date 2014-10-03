@@ -1,0 +1,50 @@
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<on-start>
+		<evaluate expression="createFactuurController.initializeForm()" result="flowScope.factuurForm"/>
+		<evaluate expression="createFactuurController.initializeSelectableKlanten(externalContext.sessionMap.account)" 
+					result="flowScope.selectableKlanten"/>
+		<evaluate expression="createFactuurController.initializeSelectableCurrency()"
+					result="flowScope.selectableCurrency"/>
+	</on-start>
+
+	<view-state id="selectKlant" view="selectKlant" model="factuurForm">
+		<transition on="next" to="selectBooks" >
+			<evaluate expression="createFactuurController.initializeSelectableBooks(flowScope.factuurForm)" result="flowScope.selectableBooks" />
+		</transition>
+		
+		<transition on="cancel" to="end" />
+	</view-state>
+	
+	<view-state id="selectBooks" view="selectBooks" model="factuurForm" >
+		<transition on="previous" to="selectKlant" />
+			
+		<transition on="add" >
+			<evaluate expression="createFactuurController.addBook(flowScope.factuurForm)" />
+		</transition>
+		
+		<transition on="next" to="selectDeliveryOptions" />
+	
+		<transition on="reset" to="selectBooks">
+			<evaluate expression="factuurForm.resetSelectedBooks()" />
+		</transition>
+	
+		<transition on="cancel" to="end" />
+	</view-state>
+	
+	<view-state id="selectDeliveryOptions" view="selectDeliveryOptions" model="factuurForm">
+		<transition on="previous" to="selectBooks" />
+
+		<transition on="finish" to="end">
+			<evaluate expression="createFactuurController.placeOrder(flowScope.factuurForm, externalContext.sessionMap.authenticatedAccount)"/>
+		</transition>
+		
+		<transition on="cancel" to="end" />
+	</view-state>
+	
+	<end-state id="end" view="redirect:/index.htm"/>
+</flow>	
+	

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>    
+    <definition name="fullTemplate" template="/WEB-INF/templates/template.jsp">
+        <put-attribute name="header" value="/WEB-INF/templates/header.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/templates/footer.jsp"/>
+    </definition>	
+
+    <definition name="contentOnlyTemplate" template="/WEB-INF/templates/contentOnly.jsp">
+    </definition>	
+
+	<definition name="index" extends="fullTemplate">
+		<put-attribute name="title"   value="index.title" />
+        <put-attribute name="content" value="/WEB-INF/views/index.jsp"/>
+    </definition>
+
+	<definition name="login" extends="fullTemplate">
+		<put-attribute name="title"   value="login.title" />
+        <put-attribute name="content" value="/WEB-INF/views/login.jsp"/>
+    </definition>
+
+	<definition name="account/account" extends="fullTemplate">
+		<put-attribute name="title"   value="account.account.title" />
+        <put-attribute name="content" value="/WEB-INF/views/account/account.jsp"/>
+    </definition>
+
+	<definition name="bedrijf/detail" extends="fullTemplate">
+		<put-attribute name="title"   value="bedrijf.detail.title" />
+        <put-attribute name="content" value="/WEB-INF/views/bedrijf/detail.jsp"/>
+    </definition>
+
+	<definition name="klant/detail" extends="fullTemplate">
+		<put-attribute name="title"   value="klant.detail.title" />
+        <put-attribute name="content" value="/WEB-INF/views/klant/detail.jsp"/>
+    </definition>
+
+	<definition name="klant/search" extends="fullTemplate">
+		<put-attribute name="title"   value="klant.search.title" />
+        <put-attribute name="content" value="/WEB-INF/views/klant/search.jsp"/>
+    </definition>
+
+	<definition name="selectKlant" extends="fullTemplate">
+		<put-attribute name="title"   value="selectKlant.title" />
+        <put-attribute name="content" value="/WEB-INF/views/createFactuur/selectKlant.jsp"/>
+    </definition>
+	
+
+</tiles-definitions>
