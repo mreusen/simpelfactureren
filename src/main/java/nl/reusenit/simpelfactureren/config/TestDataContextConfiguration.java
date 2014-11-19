@@ -21,7 +21,7 @@ import org.springframework.transaction.support.TransactionTemplate;
  * <li>Loads the database with test data using {@link InitialDataSetup}
  * </ul>
  * 
- * <b>Note:</b> After starting the container, you can use the following URL (with your favoriate JDBC client) to connect
+ * <b>Note:</b> After starting the container, you can use the following URL (with your favorite JDBC client) to connect
  * to the database: <i>jdbc:h2:tcp://localhost/mem:testdb</i>
  * 
  * 
